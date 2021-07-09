@@ -1,4 +1,4 @@
-package br.com.leomanzini.multiplication.tables;
+package br.com.leomanzini.sample.multiplication;
 
 import java.util.Scanner;
 import java.util.function.UnaryOperator;
