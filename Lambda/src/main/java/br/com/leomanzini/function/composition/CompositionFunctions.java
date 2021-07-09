@@ -1,4 +1,4 @@
-package br.com.leomanzini.multiplication.composition;
+package br.com.leomanzini.function.composition;
 
 import java.util.Arrays;
 
@@ -15,7 +15,7 @@ public class CompositionFunctions {
 			  .filter(number -> number != 0)
 			  .forEach(number -> System.out.println(number));
 		
-		// Imperative
+		// Imperatives
 		for(int i = 0; i < values.length; i++) {
 			int value = 0;
 			
