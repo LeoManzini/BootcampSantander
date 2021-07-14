@@ -1,6 +1,6 @@
 package br.com.leomanzini.threads;
 
-public class Application {
+public class MainExample {
 
 	public static void main(String[] args) {
 		
