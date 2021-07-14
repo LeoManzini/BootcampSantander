@@ -4,15 +4,15 @@ public class MainExample {
 
 	public static void main(String[] args) {
 		
-		SecondLoadingBar secondLoadBar = new SecondLoadingBar();
-		SecondLoadingBar secondLoadBar2 = new SecondLoadingBar();
+		SecondLoadBar secondLoadBar = new SecondLoadBar();
+		SecondLoadBar secondLoadBar2 = new SecondLoadBar();
 		
 		// Executed in two different threads, independent of sleep, execute both variables
 		secondLoadBar.start();
 		secondLoadBar2.start();
 		
-		Thread loadingBar1 = new Thread (new LoadingBar());
-		Thread loadingBar2 = new Thread (new LoadingBar());
+		Thread loadingBar1 = new Thread (new LoadBar());
+		Thread loadingBar2 = new Thread (new LoadBar());
 		
 		loadingBar1.start();
 		loadingBar2.start();

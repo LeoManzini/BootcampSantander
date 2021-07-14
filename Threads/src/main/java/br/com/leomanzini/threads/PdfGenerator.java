@@ -1,16 +1,17 @@
 package br.com.leomanzini.threads;
 
-public class SecondLoadingBar extends Thread {
-	
+public class PdfGenerator extends Thread {
+
 	@Override
 	public void run() {
 		super.run();
-	
+		
 		try {
 			Thread.sleep(5000);
-			System.out.println("Loaded: " + this.getName());
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("Generating PDF file...");
 	}
 }

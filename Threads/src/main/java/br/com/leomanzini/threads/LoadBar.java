@@ -1,6 +1,6 @@
 package br.com.leomanzini.threads;
 
-public class LoadingBar extends Thread {
+public class LoadBar extends Thread {
 
 	@Override
 	public void run() {
