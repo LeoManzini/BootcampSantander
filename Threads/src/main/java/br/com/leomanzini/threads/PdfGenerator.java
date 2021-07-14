@@ -6,12 +6,14 @@ public class PdfGenerator extends Thread {
 	public void run() {
 		super.run();
 		
+		System.out.println("Starting PDF generation...");
+		
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Generating PDF file...");
+		System.out.println("PDF file generated...");
 	}
 }
