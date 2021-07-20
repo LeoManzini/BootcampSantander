@@ -1,5 +1,6 @@
 package br.com.leomanzini.collections.queue;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,7 +29,7 @@ public class QueueExample01 {
 		// If we doesn't have elements at this queue, it throws an exception
 		// Works with loaders process and so on, where an empty queue is an error
 		
-		bankQueue.clear();
+		//bankQueue.clear();
 		
 		nextClient = bankQueue.peek();
 		System.out.println(nextClient);
@@ -36,5 +37,19 @@ public class QueueExample01 {
 		String nextClientOrError = bankQueue.element();
 		System.out.println(nextClientOrError);
 		System.out.println(bankQueue);
+		
+		for(String client : bankQueue) {
+			System.out.println("Client: " + client);
+		}
+		
+		Iterator<String> bankQueueIterator = bankQueue.iterator();
+		
+		while(bankQueueIterator.hasNext()) {
+			System.out.println("Next client: " + bankQueueIterator.next());
+		}
+		
+		System.out.println("Current queue size: " + bankQueue.size());
+		
+		System.out.println("This queue is empty? " + bankQueue.isEmpty());
 	}
 }
