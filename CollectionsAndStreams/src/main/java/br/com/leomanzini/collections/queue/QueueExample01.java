@@ -51,5 +51,9 @@ public class QueueExample01 {
 		System.out.println("Current queue size: " + bankQueue.size());
 		
 		System.out.println("This queue is empty? " + bankQueue.isEmpty());
+		
+		bankQueue.add("Wesley");
+		
+		System.out.println("Wesley added to the end: " + bankQueue);
 	}
 }
