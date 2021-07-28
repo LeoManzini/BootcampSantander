@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Configuration
 @ConfigurationProperties("spring.datasource")
-@SuppressWarnings("unused")
 @Getter
 @Setter
 public class DbConfiguration {
