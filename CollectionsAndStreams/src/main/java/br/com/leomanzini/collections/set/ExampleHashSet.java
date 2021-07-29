@@ -42,7 +42,7 @@ public class ExampleHashSet {
 		
 		notasAlunos.clear();
 		
-		// return if the set is empty
+		// return if the set is empty 
 		System.out.println(notasAlunos.isEmpty());
 	}
 }
