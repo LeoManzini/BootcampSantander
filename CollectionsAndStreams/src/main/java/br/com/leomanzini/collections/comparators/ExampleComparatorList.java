@@ -22,7 +22,8 @@ public class ExampleComparatorList {
 		System.out.println("Insertion order: ");
 		System.out.println(students);
 		
-		// Comparacao feita como na classe mas usando lambda
+		// Comparacao feita como na classe mas usando lambda, usa quando temos uma ordenacao rapida
+		// Usamos classe a parte para quando vamos utilizar direto a mesma comparacao
 		students.sort((first, second) -> first.getAge() - second.getAge());
 		System.out.println("Numeric natural order: ");
 		System.out.println(students);
