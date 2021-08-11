@@ -19,11 +19,12 @@ public class PostgresConnector implements DbConnector {
 
 		PropertiesLoader.loadProperties(propertiesPath);
 
-		try (Connection connection = DriverManager.getConnection(PropertiesLoader.getDbPassword().toString(),
-				PropertiesLoader.getDbUser(), PropertiesLoader.getDbPassword())) {
+		try {
 
+			this.connection = DriverManager.getConnection(PropertiesLoader.getDbPassword().toString(),
+														  PropertiesLoader.getDbUser(), 
+														  PropertiesLoader.getDbPassword());
 			LOG.info("Connection completed with sucess.");
-			this.connection = connection;
 
 		} catch (Exception e) {
 			e.printStackTrace();
