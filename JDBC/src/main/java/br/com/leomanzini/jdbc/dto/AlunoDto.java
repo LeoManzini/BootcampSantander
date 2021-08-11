@@ -58,4 +58,10 @@ public class AlunoDto {
 	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
+
+	@Override
+	public String toString() {
+		return "AlunoDto [number=" + number + ", name=" + name + ", email=" + email + ", active=" + active
+				+ ", creationDate=" + creationDate + "]";
+	}
 }

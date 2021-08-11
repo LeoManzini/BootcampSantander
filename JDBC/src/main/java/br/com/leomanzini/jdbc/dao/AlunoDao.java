@@ -35,6 +35,8 @@ public class AlunoDao implements InterfaceDao {
 		try(Connection connection = connectionFactory.startConnection(propertiesPath)) {
 			
 			PreparedStatement statement = connection.prepareStatement(query);
+			
+			// Used executeQuery because this method is just a database consult
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {

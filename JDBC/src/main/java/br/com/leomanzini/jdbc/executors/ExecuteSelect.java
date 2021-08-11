@@ -21,9 +21,7 @@ public class ExecuteSelect implements Executors {
 		try {
 			List<AlunoDto> alunos = databaseExtraction.queryExecution(propertiesPath);
 			
-			for(AlunoDto aluno : alunos) {
-				LOG.info(aluno.toString());
-			}
+			alunos.stream().forEach(aluno -> LOG.info(aluno.toString()));
 			
 		} catch(Exception e) {
 			e.printStackTrace();
