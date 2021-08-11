@@ -104,15 +104,15 @@ public class AlunoDao implements InterfaceDao {
 	}
 
 	// Database insert
-	public void create(String propertiesPath, AlunoDto aluno) {
+	public void create(String propertiesPath) {
 		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
 
 			PreparedStatement statement = connection.prepareStatement(insertQuery);
 			statement.setInt(1, 501);
 			statement.setString(2, "Giovanna Oliveira");
 			statement.setString(3, "gigi_oliveira@queen.com");
-			statement.setString(4, "true");
-			statement.setString(5, "2021-08-11 20:41:35.516367");
+			statement.setBoolean(4, true);
+			statement.setString(5, "now()::timestamp");
 			
 			int rowsAffected = statement.executeUpdate();
 			
