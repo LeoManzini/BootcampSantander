@@ -21,9 +21,8 @@ public class PostgresConnector implements DbConnector {
 
 		try {
 
-			this.connection = DriverManager.getConnection(PropertiesLoader.getDbPassword().toString(),
-														  PropertiesLoader.getDbUser(), 
-														  PropertiesLoader.getDbPassword());
+			this.connection = DriverManager.getConnection(PropertiesLoader.getDbUrl().toString(),
+					PropertiesLoader.getDbUser(), PropertiesLoader.getDbPassword());
 			LOG.info("Connection completed with sucess.");
 
 		} catch (Exception e) {

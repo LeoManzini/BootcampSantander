@@ -12,7 +12,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		
-		String propertiesPath = (args.length > 0) ? args[0] : "src/main/resources/Properties.properties";
+		String propertiesPath = (args.length > 0) ? args[0] : "src/main/resources/Application.properties";
 		Executors executor = new ExecuteSelect();
 		
 		try {

@@ -19,13 +19,13 @@ public class AlunoDao implements InterfaceDao {
 	private static final Logger LOG = LogManager.getLogger(AlunoDao.class);
 	private DbConnector connectionFactory = new PostgresConnector();
 	
-	private String query = " SELECT               "
-			+ " numero       AS client_number,    "
-			+ " nome         AS client_name,      "
-			+ " email        AS client_email,     "
-			+ " ativo        AS client_active,    "
-			+ " data_criacao AS creation_date     "
-			+ " FROM CLIENTE WHERE nome LIKE 'A%' ";
+	private String query = " SELECT                    "
+			+ " numero       AS client_number,         "
+			+ " nome         AS client_name,           "
+			+ " email        AS client_email,          "
+			+ " ativo        AS client_active,         "
+			+ " data_criacao AS creation_date          "
+			+ " FROM CLIENTE WHERE nome LIKE 'Alzira%' ";
 	
 	@Override
 	public List<AlunoDto> queryExecution(String propertiesPath) throws SQLException {
