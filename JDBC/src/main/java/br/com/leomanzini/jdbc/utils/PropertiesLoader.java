@@ -3,7 +3,12 @@ package br.com.leomanzini.jdbc.utils;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public abstract class PropertiesLoader {
+	
+	private static final Logger LOG = LogManager.getLogger(PropertiesLoader.class);
 	
 	private static final String DB_URL_DRIVER = "jdbc.base.driver";
 	private static final String DB_URL_ADRESS = "jdbc.base.adress";
@@ -17,9 +22,9 @@ public abstract class PropertiesLoader {
 	private static String dbUrlAdress;
 	private static String dbUrlPort;
 	private static String dbUrlName;
-	public static StringBuilder dbUrl;
-	public static String dbUser;
-	public static String dbPassword;
+	private static StringBuilder dbUrl;
+	private static String dbUser;
+	private static String dbPassword;
 	
 	public static void loadProperties(String propertiesPath) {
 		
@@ -42,7 +47,22 @@ public abstract class PropertiesLoader {
 			dbPassword = props.getProperty(DB_PASSWORD);
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("ERROR: Unexpected error trying to load properties.");
 			
+			System.exit(-1);
 		}
+	}
+
+	public static StringBuilder getDbUrl() {
+		return dbUrl;
+	}
+
+	public static String getDbUser() {
+		return dbUser;
+	}
+
+	public static String getDbPassword() {
+		return dbPassword;
 	}
 }
