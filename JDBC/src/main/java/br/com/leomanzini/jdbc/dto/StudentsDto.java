@@ -1,6 +1,6 @@
 package br.com.leomanzini.jdbc.dto;
 
-public class AlunoDto {
+public class StudentsDto {
 	
 	private int number;
 	private String name;
@@ -8,10 +8,10 @@ public class AlunoDto {
 	private boolean active;
 	private String creationDate;
 	
-	public AlunoDto() {
+	public StudentsDto() {
 	}
 
-	public AlunoDto(int number, String name, String email, boolean active, String creationDate) {
+	public StudentsDto(int number, String name, String email, boolean active, String creationDate) {
 		this.number = number;
 		this.name = name;
 		this.email = email;

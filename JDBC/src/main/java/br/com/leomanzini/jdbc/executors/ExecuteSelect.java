@@ -6,8 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.leomanzini.jdbc.dao.StudentsSelectDao;
-import br.com.leomanzini.jdbc.dao.InterfaceDao;
-import br.com.leomanzini.jdbc.dto.AlunoDto;
+import br.com.leomanzini.jdbc.dto.StudentsDto;
 import br.com.leomanzini.jdbc.utils.PropertiesLoader;
 
 public class ExecuteSelect implements Executors {
@@ -18,10 +17,10 @@ public class ExecuteSelect implements Executors {
 	public void execute(String propertiesPath) {
 		
 		PropertiesLoader.loadProperties(propertiesPath);
-		InterfaceDao databaseExtraction = new StudentsSelectDao();
+		StudentsSelectDao databaseExtraction = new StudentsSelectDao();
 		
 		try {
-			List<AlunoDto> alunos = databaseExtraction.queryExecution();
+			List<StudentsDto> alunos = databaseExtraction.queryExecution();
 			
 			alunos.stream().forEach(aluno -> LOG.info(aluno.toString()));
 			

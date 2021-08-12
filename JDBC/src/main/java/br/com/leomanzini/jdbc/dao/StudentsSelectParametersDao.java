@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.leomanzini.jdbc.connections.DbConnector;
 import br.com.leomanzini.jdbc.connections.PostgresConnector;
-import br.com.leomanzini.jdbc.dto.AlunoDto;
+import br.com.leomanzini.jdbc.dto.StudentsDto;
 
-public class StudentsSelectParametersDao implements InterfaceDao {
+public class StudentsSelectParametersDao {
 	
 	private static final Logger LOG = LogManager.getLogger(StudentsSelectParametersDao.class);
 	private DbConnector connectionFactory = new PostgresConnector();
@@ -28,9 +28,8 @@ public class StudentsSelectParametersDao implements InterfaceDao {
 			+ " FROM CLIENTE                     "
 			+ " WHERE student_id = ?             ";
 	
-	@Override
-	public List<AlunoDto> queryExecution() throws SQLException {
-		List<AlunoDto> alunos = new ArrayList<>();
+	public List<StudentsDto> queryExecution(int parameter) throws SQLException {
+		List<StudentsDto> alunos = new ArrayList<>();
 
 		try (Connection connection = connectionFactory.startConnection()) {
 
@@ -39,11 +38,11 @@ public class StudentsSelectParametersDao implements InterfaceDao {
 			// according with the types
 			// statement.setInt(1, clientId);
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, 2);
+			statement.setInt(1, parameter);
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				AlunoDto aluno = new AlunoDto();
+				StudentsDto aluno = new StudentsDto();
 
 				aluno.setNumber(rs.getInt("client_number"));
 				aluno.setName(rs.getString("client_name"));
@@ -58,7 +57,7 @@ public class StudentsSelectParametersDao implements InterfaceDao {
 			e.printStackTrace();
 			LOG.error("ERROR: Unexpected error trying to execute query.");
 
-			System.exit(-3);
+			System.exit(-5);
 		}
 		return alunos;
 	}

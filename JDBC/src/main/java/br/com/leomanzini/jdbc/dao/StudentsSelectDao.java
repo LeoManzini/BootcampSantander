@@ -12,9 +12,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.leomanzini.jdbc.connections.DbConnector;
 import br.com.leomanzini.jdbc.connections.PostgresConnector;
-import br.com.leomanzini.jdbc.dto.AlunoDto;
+import br.com.leomanzini.jdbc.dto.StudentsDto;
 
-public class StudentsSelectDao implements InterfaceDao {
+public class StudentsSelectDao {
 
 	private static final Logger LOG = LogManager.getLogger(StudentsSelectDao.class);
 	private DbConnector connectionFactory = new PostgresConnector();
@@ -26,10 +26,6 @@ public class StudentsSelectDao implements InterfaceDao {
 			+ " active         AS active,       " 
 			+ " creation_date  AS creation_date "
 			+ " FROM students                   ";
-	
-	private String insertQuery = " INSERT INTO                     "
-			+ " cliente(numero, nome, email, ativo, data_criacao)  "
-			+ " VALUES ( ? , ? , ? , ? , ? )                       ";
 
 	private String deleteQuery = " DELETE           "
 							   + " FROM cliente     "
@@ -39,10 +35,9 @@ public class StudentsSelectDao implements InterfaceDao {
 							   + " cliente SET (ativo = false) "
 							   + " WHERE numero = ?            ";
 	
-	@Override
-	public List<AlunoDto> queryExecution() throws SQLException {
+	public List<StudentsDto> queryExecution() throws SQLException {
 
-		List<AlunoDto> alunos = new ArrayList<>();
+		List<StudentsDto> alunos = new ArrayList<>();
 
 		try (Connection connection = connectionFactory.startConnection()) {
 
@@ -51,7 +46,7 @@ public class StudentsSelectDao implements InterfaceDao {
 			ResultSet rs = statement.executeQuery();
 
 			while (rs.next()) {
-				AlunoDto aluno = new AlunoDto();
+				StudentsDto aluno = new StudentsDto();
 
 				aluno.setNumber(rs.getInt("id"));
 				aluno.setName(rs.getString("name"));
@@ -70,29 +65,6 @@ public class StudentsSelectDao implements InterfaceDao {
 		}
 
 		return alunos;
-	}
-
-	// Database insert
-	public void create() {
-		try (Connection connection = connectionFactory.startConnection()) {
-
-			PreparedStatement statement = connection.prepareStatement(insertQuery);
-			statement.setInt(1, 501);
-			statement.setString(2, "Giovanna Oliveira");
-			statement.setString(3, "gigi_oliveira@queen.com");
-			statement.setBoolean(4, true);
-			statement.setString(5, "now()::timestamp");
-
-			int rowsAffected = statement.executeUpdate();
-
-			LOG.info("Rows affected: " + rowsAffected);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			LOG.error("ERROR: Unexpected error trying to execute query.");
-
-			System.exit(-3);
-		}
 	}
 
 	// Database delete
@@ -115,7 +87,7 @@ public class StudentsSelectDao implements InterfaceDao {
 	}
 	
 	// Updating database
-	public void update(String propertiesPath, AlunoDto aluno) {
+	public void update(String propertiesPath, StudentsDto aluno) {
 		try (Connection connection = connectionFactory.startConnection()) {
 
 			PreparedStatement statement = connection.prepareStatement(updateQuery);
