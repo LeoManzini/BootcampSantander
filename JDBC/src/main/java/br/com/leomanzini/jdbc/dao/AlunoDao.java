@@ -33,6 +33,14 @@ public class AlunoDao implements InterfaceDao {
 			+ " cliente(numero, nome, email, ativo, data_criacao)  "
 			+ " VALUES ( ? , ? , ? , ? , ? )                       ";
 
+	private String deleteQuery = " DELETE           "
+							   + " FROM cliente     "
+							   + " WHERE numero = ? ";
+
+	private String updateQuery = " UPDATE                      "
+							   + " cliente SET (ativo = false) "
+							   + " WHERE numero = ?            ";
+	
 	// Database consult
 	@Override
 	public List<AlunoDto> queryExecution(String propertiesPath) throws SQLException {
@@ -113,9 +121,47 @@ public class AlunoDao implements InterfaceDao {
 			statement.setString(3, "gigi_oliveira@queen.com");
 			statement.setBoolean(4, true);
 			statement.setString(5, "now()::timestamp");
-			
+
 			int rowsAffected = statement.executeUpdate();
-			
+
+			LOG.info("Rows affected: " + rowsAffected);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("ERROR: Unexpected error trying to execute query.");
+
+			System.exit(-3);
+		}
+	}
+
+	// Database delete
+	public void delete(String propertiesPath) {
+		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
+
+			PreparedStatement statement = connection.prepareStatement(deleteQuery);
+			statement.setInt(1, 501);
+
+			int rowsAffected = statement.executeUpdate();
+
+			LOG.info("Rows affected: " + rowsAffected);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.error("ERROR: Unexpected error trying to execute query.");
+
+			System.exit(-3);
+		}
+	}
+	
+	// Updating database
+	public void update(String propertiesPath, AlunoDto aluno) {
+		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
+
+			PreparedStatement statement = connection.prepareStatement(updateQuery);
+			statement.setInt(1, aluno.getNumber());
+
+			int rowsAffected = statement.executeUpdate();
+
 			LOG.info("Rows affected: " + rowsAffected);
 
 		} catch (Exception e) {
