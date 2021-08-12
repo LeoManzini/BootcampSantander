@@ -24,8 +24,8 @@ public class StudentsInsertDao {
 		try (Connection connection = connectionFactory.startConnection()) {
 
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setString(1, "Giovanna Oliveira");
-			statement.setString(2, "gigi_oliveira@queen.com");
+			statement.setString(1, student.getName());
+			statement.setString(2, student.getEmail());
 
 			int rowsAffected = statement.executeUpdate();
 

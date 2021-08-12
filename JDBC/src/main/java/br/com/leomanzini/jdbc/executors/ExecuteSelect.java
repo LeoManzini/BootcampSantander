@@ -1,12 +1,9 @@
 package br.com.leomanzini.jdbc.executors;
 
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.leomanzini.jdbc.dao.StudentsSelectDao;
-import br.com.leomanzini.jdbc.dao.StudentsSelectParametersDao;
+import br.com.leomanzini.jdbc.dao.StudentsInsertDao;
 import br.com.leomanzini.jdbc.dto.StudentsDto;
 import br.com.leomanzini.jdbc.utils.PropertiesLoader;
 
@@ -19,12 +16,17 @@ public class ExecuteSelect implements Executors {
 		
 		PropertiesLoader.loadProperties(propertiesPath);
 		//StudentsSelectDao databaseExtraction = new StudentsSelectDao();
-		StudentsSelectParametersDao databaseExtraction = new StudentsSelectParametersDao();
+		StudentsInsertDao databaseExtraction = new StudentsInsertDao();
 		
 		try {
-			List<StudentsDto> alunos = databaseExtraction.queryExecution(1);
+			//List<StudentsDto> alunos = databaseExtraction.queryExecution(null);
 			
-			alunos.stream().forEach(aluno -> LOG.info(aluno.toString()));
+			//alunos.stream().forEach(aluno -> LOG.info(aluno.toString()));
+			StudentsDto student = new StudentsDto();
+			student.setName("Joao Pedro Manzini");
+			student.setEmail("jp@manzini.com");
+			
+			databaseExtraction.queryExecution(student);
 			
 		} catch(Exception e) {
 			e.printStackTrace();
