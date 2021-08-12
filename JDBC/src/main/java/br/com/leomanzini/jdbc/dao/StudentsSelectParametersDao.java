@@ -20,10 +20,10 @@ public class StudentsSelectParametersDao {
 	private DbConnector connectionFactory = new PostgresConnector();
 	
 	private String query = " SELECT              "
-			+ " student_id     AS client_number, "
-			+ " student_name   AS client_name,   " 
-			+ " student_email  AS client_email,  "
-			+ " active         AS client_active, " 
+			+ " student_id     AS id, "
+			+ " student_name   AS name,   " 
+			+ " student_email  AS email,  "
+			+ " active         AS active, " 
 			+ " creation_date  AS creation_date  "
 			+ " FROM CLIENTE                     "
 			+ " WHERE student_id = ?             ";
@@ -44,10 +44,10 @@ public class StudentsSelectParametersDao {
 			while (rs.next()) {
 				StudentsDto aluno = new StudentsDto();
 
-				aluno.setNumber(rs.getInt("client_number"));
-				aluno.setName(rs.getString("client_name"));
-				aluno.setEmail(rs.getString("client_email"));
-				aluno.setActive(rs.getBoolean("client_active"));
+				aluno.setId(rs.getInt("id"));
+				aluno.setName(rs.getString("name"));
+				aluno.setEmail(rs.getString("email"));
+				aluno.setActive(rs.getBoolean("active"));
 				aluno.setCreationDate(rs.getString("creation_date"));
 
 				alunos.add(aluno);

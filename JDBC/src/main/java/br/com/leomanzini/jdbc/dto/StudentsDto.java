@@ -2,7 +2,7 @@ package br.com.leomanzini.jdbc.dto;
 
 public class StudentsDto {
 	
-	private int number;
+	private int id;
 	private String name;
 	private String email;
 	private boolean active;
@@ -11,20 +11,20 @@ public class StudentsDto {
 	public StudentsDto() {
 	}
 
-	public StudentsDto(int number, String name, String email, boolean active, String creationDate) {
-		this.number = number;
+	public StudentsDto(int id, String name, String email, boolean active, String creationDate) {
+		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.active = active;
 		this.creationDate = creationDate;
 	}
 
-	public int getNumber() {
-		return number;
+	public int getId() {
+		return id;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setId(int number) {
+		this.id = number;
 	}
 
 	public String getName() {
@@ -61,7 +61,7 @@ public class StudentsDto {
 
 	@Override
 	public String toString() {
-		return "AlunoDto [number=" + number + ", name=" + name + ", email=" + email + ", active=" + active
+		return "AlunoDto [number=" + id + ", name=" + name + ", email=" + email + ", active=" + active
 				+ ", creationDate=" + creationDate + "]";
 	}
 }

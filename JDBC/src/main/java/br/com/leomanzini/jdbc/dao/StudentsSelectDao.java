@@ -26,14 +26,6 @@ public class StudentsSelectDao {
 			+ " active         AS active,       " 
 			+ " creation_date  AS creation_date "
 			+ " FROM students                   ";
-
-	private String deleteQuery = " DELETE           "
-							   + " FROM cliente     "
-							   + " WHERE numero = ? ";
-
-	private String updateQuery = " UPDATE                      "
-							   + " cliente SET (ativo = false) "
-							   + " WHERE numero = ?            ";
 	
 	public List<StudentsDto> queryExecution() throws SQLException {
 
@@ -48,7 +40,7 @@ public class StudentsSelectDao {
 			while (rs.next()) {
 				StudentsDto aluno = new StudentsDto();
 
-				aluno.setNumber(rs.getInt("id"));
+				aluno.setId(rs.getInt("id"));
 				aluno.setName(rs.getString("name"));
 				aluno.setEmail(rs.getString("email"));
 				aluno.setActive(rs.getBoolean("active"));
@@ -65,43 +57,5 @@ public class StudentsSelectDao {
 		}
 
 		return alunos;
-	}
-
-	// Database delete
-	public void delete(String propertiesPath) {
-		try (Connection connection = connectionFactory.startConnection()) {
-
-			PreparedStatement statement = connection.prepareStatement(deleteQuery);
-			statement.setInt(1, 501);
-
-			int rowsAffected = statement.executeUpdate();
-
-			LOG.info("Rows affected: " + rowsAffected);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			LOG.error("ERROR: Unexpected error trying to execute query.");
-
-			System.exit(-3);
-		}
-	}
-	
-	// Updating database
-	public void update(String propertiesPath, StudentsDto aluno) {
-		try (Connection connection = connectionFactory.startConnection()) {
-
-			PreparedStatement statement = connection.prepareStatement(updateQuery);
-			statement.setInt(1, aluno.getNumber());
-
-			int rowsAffected = statement.executeUpdate();
-
-			LOG.info("Rows affected: " + rowsAffected);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			LOG.error("ERROR: Unexpected error trying to execute query.");
-
-			System.exit(-3);
-		}
 	}
 }
