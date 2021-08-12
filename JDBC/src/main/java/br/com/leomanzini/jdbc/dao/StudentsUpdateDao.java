@@ -16,9 +16,9 @@ public class StudentsUpdateDao {
 	private static final Logger LOG = LogManager.getLogger(StudentsUpdateDao.class);
 	private DbConnector connectionFactory = new PostgresConnector();
 	
-	private String query = " UPDATE             "
-			   + " students SET(active = false) "
-			   + " WHERE student_id = ?         ";
+	private String query = " UPDATE            "
+			   + " students SET active = false "
+			   + " WHERE student_id = ?        ";
 	
 	public void queryExecution(StudentsDto student) throws SQLException {
 		try (Connection connection = connectionFactory.startConnection()) {
