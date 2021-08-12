@@ -3,6 +3,7 @@ package br.com.leomanzini.jdbc.executors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import br.com.leomanzini.jdbc.dao.StudentsDeleteDao;
 import br.com.leomanzini.jdbc.dao.StudentsInsertDao;
 import br.com.leomanzini.jdbc.dto.StudentsDto;
 import br.com.leomanzini.jdbc.utils.PropertiesLoader;
@@ -16,13 +17,14 @@ public class ExecuteSelect implements Executors {
 		
 		PropertiesLoader.loadProperties(propertiesPath);
 		//StudentsSelectDao databaseExtraction = new StudentsSelectDao();
-		StudentsInsertDao databaseExtraction = new StudentsInsertDao();
+		StudentsDeleteDao databaseExtraction = new StudentsDeleteDao();
 		
 		try {
 			//List<StudentsDto> alunos = databaseExtraction.queryExecution(null);
 			
 			//alunos.stream().forEach(aluno -> LOG.info(aluno.toString()));
 			StudentsDto student = new StudentsDto();
+			student.setId(3);
 			student.setName("Joao Pedro Manzini");
 			student.setEmail("jp@manzini.com");
 			
