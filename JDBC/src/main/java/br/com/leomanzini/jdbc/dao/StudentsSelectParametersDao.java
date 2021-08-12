@@ -19,14 +19,14 @@ public class StudentsSelectParametersDao {
 	private static final Logger LOG = LogManager.getLogger(StudentsSelectParametersDao.class);
 	private DbConnector connectionFactory = new PostgresConnector();
 	
-	private String query = " SELECT              "
-			+ " student_id     AS id, "
-			+ " student_name   AS name,   " 
-			+ " student_email  AS email,  "
-			+ " active         AS active, " 
-			+ " creation_date  AS creation_date  "
-			+ " FROM CLIENTE                     "
-			+ " WHERE student_id = ?             ";
+	private String query = " SELECT             "
+			+ " student_id     AS id,           "
+			+ " student_name   AS name,         " 
+			+ " student_email  AS email,        "
+			+ " active         AS active,       " 
+			+ " creation_date  AS creation_date "
+			+ " FROM students                   "
+			+ " WHERE student_id = ?            ";
 	
 	public List<StudentsDto> queryExecution(int parameter) throws SQLException {
 		List<StudentsDto> alunos = new ArrayList<>();
