@@ -10,8 +10,8 @@
 		<description>Persistence unity</description>
 		
 		<!-- Entity Manager Class Name -->
-		<class>classes.Student</class>
-		<class>classes.States</class>
+		<class>br.com.leomanzini.jpa.dto.Students</class>
+		<class>br.com.leomanzini.jpa.dto.States</class>
 		
 		<!-- Database configurations -->
 		<properties>
