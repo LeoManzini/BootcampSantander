@@ -4,5 +4,5 @@ import java.sql.Connection;
 
 public interface DbConnector {
 	
-	public Connection startConnection(String propertiesPath) throws Exception;
+	public Connection startConnection() throws Exception;
 }

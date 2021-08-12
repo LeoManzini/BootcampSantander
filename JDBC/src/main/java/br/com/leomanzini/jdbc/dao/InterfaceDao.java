@@ -7,5 +7,5 @@ import br.com.leomanzini.jdbc.dto.AlunoDto;
 
 public interface InterfaceDao {
 	
-	public List<AlunoDto> queryExecution(String propertiesPath) throws SQLException;
+	public List<AlunoDto> queryExecution() throws SQLException;
 }

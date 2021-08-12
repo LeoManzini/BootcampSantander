@@ -14,21 +14,19 @@ import br.com.leomanzini.jdbc.connections.DbConnector;
 import br.com.leomanzini.jdbc.connections.PostgresConnector;
 import br.com.leomanzini.jdbc.dto.AlunoDto;
 
-public class AlunoDao implements InterfaceDao {
+public class StudentsSelectDao implements InterfaceDao {
 
-	private static final Logger LOG = LogManager.getLogger(AlunoDao.class);
+	private static final Logger LOG = LogManager.getLogger(StudentsSelectDao.class);
 	private DbConnector connectionFactory = new PostgresConnector();
 
-	private String query = " SELECT                    " + " numero       AS client_number,         "
-			+ " nome         AS client_name,           " + " email        AS client_email,          "
-			+ " ativo        AS client_active,         " + " data_criacao AS creation_date          "
-			+ " FROM CLIENTE WHERE nome LIKE 'Alzira%' ";
-
-	private String secondQuery = " SELECT              " + " numero       AS client_number,         "
-			+ " nome         AS client_name,           " + " email        AS client_email,          "
-			+ " ativo        AS client_active,         " + " data_criacao AS creation_date          "
-			+ " FROM CLIENTE WHERE nome = ?            ";
-
+	private String query = " SELECT             " 
+			+ " student_id     AS id,           "
+			+ " student_name   AS name,         " 
+			+ " student_email  AS email,        "
+			+ " active         AS active,       " 
+			+ " creation_date  AS creation_date "
+			+ " FROM students                   ";
+	
 	private String insertQuery = " INSERT INTO                     "
 			+ " cliente(numero, nome, email, ativo, data_criacao)  "
 			+ " VALUES ( ? , ? , ? , ? , ? )                       ";
@@ -41,13 +39,12 @@ public class AlunoDao implements InterfaceDao {
 							   + " cliente SET (ativo = false) "
 							   + " WHERE numero = ?            ";
 	
-	// Database consult
 	@Override
-	public List<AlunoDto> queryExecution(String propertiesPath) throws SQLException {
+	public List<AlunoDto> queryExecution() throws SQLException {
 
 		List<AlunoDto> alunos = new ArrayList<>();
 
-		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
+		try (Connection connection = connectionFactory.startConnection()) {
 
 			PreparedStatement statement = connection.prepareStatement(query);
 			// Used executeQuery because this method is just a database consult
@@ -56,10 +53,10 @@ public class AlunoDao implements InterfaceDao {
 			while (rs.next()) {
 				AlunoDto aluno = new AlunoDto();
 
-				aluno.setNumber(rs.getInt("client_number"));
-				aluno.setName(rs.getString("client_name"));
-				aluno.setEmail(rs.getString("client_email"));
-				aluno.setActive(rs.getBoolean("client_active"));
+				aluno.setNumber(rs.getInt("id"));
+				aluno.setName(rs.getString("name"));
+				aluno.setEmail(rs.getString("email"));
+				aluno.setActive(rs.getBoolean("active"));
 				aluno.setCreationDate(rs.getString("creation_date"));
 
 				alunos.add(aluno);
@@ -67,53 +64,17 @@ public class AlunoDao implements InterfaceDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.error("ERROR: Unexpected error trying to execute query.");
+			LOG.error("ERROR: Unexpected error trying to execute SELECT query.");
 
 			System.exit(-3);
 		}
 
-		return alunos;
-	}
-
-	// Database consult with filter
-	public List<AlunoDto> querySubstituteParameter(String propertiesPath, String parameter) throws SQLException {
-
-		List<AlunoDto> alunos = new ArrayList<>();
-
-		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
-
-			// if you want to use an parameter, just put a ? at the query and the clause
-			// bellow
-			// according with the types
-			// statement.setInt(1, clientId);
-			PreparedStatement statement = connection.prepareStatement(secondQuery);
-			statement.setString(1, parameter);
-			ResultSet rs = statement.executeQuery();
-
-			while (rs.next()) {
-				AlunoDto aluno = new AlunoDto();
-
-				aluno.setNumber(rs.getInt("client_number"));
-				aluno.setName(rs.getString("client_name"));
-				aluno.setEmail(rs.getString("client_email"));
-				aluno.setActive(rs.getBoolean("client_active"));
-				aluno.setCreationDate(rs.getString("creation_date"));
-
-				alunos.add(aluno);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			LOG.error("ERROR: Unexpected error trying to execute query.");
-
-			System.exit(-3);
-		}
 		return alunos;
 	}
 
 	// Database insert
-	public void create(String propertiesPath) {
-		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
+	public void create() {
+		try (Connection connection = connectionFactory.startConnection()) {
 
 			PreparedStatement statement = connection.prepareStatement(insertQuery);
 			statement.setInt(1, 501);
@@ -136,7 +97,7 @@ public class AlunoDao implements InterfaceDao {
 
 	// Database delete
 	public void delete(String propertiesPath) {
-		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
+		try (Connection connection = connectionFactory.startConnection()) {
 
 			PreparedStatement statement = connection.prepareStatement(deleteQuery);
 			statement.setInt(1, 501);
@@ -155,7 +116,7 @@ public class AlunoDao implements InterfaceDao {
 	
 	// Updating database
 	public void update(String propertiesPath, AlunoDto aluno) {
-		try (Connection connection = connectionFactory.startConnection(propertiesPath)) {
+		try (Connection connection = connectionFactory.startConnection()) {
 
 			PreparedStatement statement = connection.prepareStatement(updateQuery);
 			statement.setInt(1, aluno.getNumber());

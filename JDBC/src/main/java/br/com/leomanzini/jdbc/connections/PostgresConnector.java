@@ -15,9 +15,7 @@ public class PostgresConnector implements DbConnector {
 	private Connection connection;
 
 	@Override
-	public Connection startConnection(String propertiesPath) throws Exception {
-
-		PropertiesLoader.loadProperties(propertiesPath);
+	public Connection startConnection() throws Exception {
 
 		try {
 
