@@ -22,7 +22,9 @@ public class States {
 	@Column(name= "state_name")
 	private String name;
 	
-	@OneToMany(mappedBy = "student_state", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "student_state", 
+			   cascade = CascadeType.ALL, 
+			   orphanRemoval = true)
 	private List<Students> students = new ArrayList<>();
 
 	public States() {

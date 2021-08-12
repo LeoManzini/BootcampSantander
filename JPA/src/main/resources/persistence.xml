@@ -7,7 +7,7 @@
 
 	<persistence-unit name="leomanzini-jpa-tests">
 	
-		<description>Persistence unity</description>
+		<description>persistence-unity</description>
 		
 		<!-- Entity Manager Class Name -->
 		<class>br.com.leomanzini.jpa.dto.Students</class>
