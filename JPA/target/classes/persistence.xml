@@ -22,4 +22,30 @@
 		</properties>
 	</persistence-unit>
 	
+	<persistence-unit name="leomanzini-hibernate">
+		
+		<description>Using hibernate implementation to JPA</description>
+		
+		<!-- JPA Implementation -->
+		<provider>org.Hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<!-- Entity Manager Class Name -->
+		<class>br.com.leomanzini.jpa.dto.Students</class>
+		<class>br.com.leomanzini.jpa.dto.States</class>
+		
+		<!-- Database configurations -->
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/financas" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="281219" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql" />
+			
+			<!-- Hibernate configurations for postgres -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+		</properties>
+	</persistence-unit>
+	
 </persistence>
