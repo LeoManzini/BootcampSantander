@@ -27,7 +27,7 @@
 		<description>Using hibernate implementation to JPA</description>
 		
 		<!-- JPA Implementation -->
-		<provider>org.Hibernate.jpa.HibernatePersistenceProvider</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
 		<!-- Entity Manager Class Name -->
 		<class>br.com.leomanzini.jpa.dto.Students</class>
@@ -45,6 +45,7 @@
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
 			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<!-- If you want to run this in production, uses validate bitwise create -->
 		</properties>
 	</persistence-unit>
 	
