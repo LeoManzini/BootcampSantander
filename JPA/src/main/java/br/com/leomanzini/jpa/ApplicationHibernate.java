@@ -36,12 +36,23 @@ public class ApplicationHibernate {
 		System.out.println("State found: " + findState);
 		System.out.println("Student found: " + findStudent);
 		
-		// Each time that we alter something at the database, we have to start a new transaction
+		// Each time that we alter something at the database, we have to start a new transaction (doing update)
 		entityManager.getTransaction().begin();
 		
-		// Modify the objects
+		// Modify the objects, that are persisting at database
 		findStudent.setName("Luis Renato Manzini");
 		findStudent.setAge(45);
+		
+		// Commit the modifications at database
+		entityManager.getTransaction().commit();
+		
+		System.out.println("Student found (with changes): " + findStudent);
+		
+		// Each time that we alter something at the database, we have to start a new transaction (doing a delete)
+		entityManager.getTransaction().begin();
+		
+		// Remove the specified object from database
+		entityManager.remove(findStudent);
 		
 		// Commit the modifications at database
 		entityManager.getTransaction().commit();
