@@ -33,9 +33,21 @@ public class ApplicationJpql {
 		
 		// Returns a list as query result
 		String sqlList = "SELECT * FROM Students";
+		@SuppressWarnings("unchecked")
 		List<Students> studentsSqlList = entityManager.createNativeQuery(sqlList, Students.class).getResultList();
 		
 		System.out.println("One line query return: " + sqlStudent);
 		studentsSqlList.stream().forEach(Student -> System.out.println("Sql list consult: " + Student));
+		
+		// JPQL consult
+		// Jpql needs to use a alias for the table, because doesn't accept *
+		String jpql = "SELECT a FROM Students a WHERE a.name = :name";
+		Students jpqlStudent = entityManager.createQuery(jpql, Students.class).setParameter("name", name).getSingleResult();
+		
+		String jpqlList = "SELECT a FROM Students a";
+		List<Students> studentsJpqlList = entityManager.createQuery(jpqlList, Students.class).getResultList();
+		
+		System.out.println("One line query return: " + jpqlStudent);
+		studentsJpqlList.stream().forEach(Student -> System.out.println("Sql list consult: " + Student));
 	}
 }
