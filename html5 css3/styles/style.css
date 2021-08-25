@@ -22,6 +22,11 @@ a {
     color: #505050;
 }
 
+a:hover {
+    text-decoration: chocolate;
+    color: blue;
+}
+
 .post-title {
     font-size: 16;
     font-style: italic;
@@ -45,4 +50,13 @@ a {
 
 .post-image {
     margin-bottom: 15px;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.contact-list li a {
+    text-decoration: none;
 }
