@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { CourseListComponents } from './courses/course-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CourseListComponents
   ],
   imports: [
     BrowserModule,
