@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Course } from "./course";
 
 @Component({
     selector: 'app-course-list',
@@ -7,4 +8,5 @@ import { Component } from "@angular/core";
 
 export class CourseListComponents {
 
+    courses: Course[] = [];
 }
