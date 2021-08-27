@@ -20,7 +20,14 @@ import { NavBar } from './nav-bar/nav-bar.component';
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule
+    RouterModule.forRoot([
+      {
+        path: '', redirectTo: 'courses', pathMatch: 'full'
+      },
+      {
+        path: 'courses', component: CourseListComponents
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
