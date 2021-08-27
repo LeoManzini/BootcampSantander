@@ -30,7 +30,9 @@
             <td>
                 <app-star-component [rating]="course.rating"></app-star-component>
             </td>
-            <td></td>
+            <td>
+                <a [routerLink]="['/course/info', course.id]" class="btn btn-primary mr-2">Info</a>
+            </td>
         </tr>
     </tbody>
 </table>
