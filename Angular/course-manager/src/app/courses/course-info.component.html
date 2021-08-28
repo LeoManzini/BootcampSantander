@@ -51,4 +51,8 @@
             </div>
         </div>
     </div>
+    <br>
+    
+    <button [disabled]="courseForm.invalid" class="btn btn-primary mr-2">Save</button>
+    <button [routerLink]="['/courses']" class="btn btn-secondary">Back</button>
 </form>
